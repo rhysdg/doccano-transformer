@@ -32,7 +32,7 @@ class NERExample:
                     annotation['label']
                 ])
             return labels
-        elif 'labels' in self.raw:
+        elif 'label' in self.raw:
             labels = defaultdict(list)
             for label in self.raw['labels']:
                 # TODO: This format doesn't have a user field currently.
