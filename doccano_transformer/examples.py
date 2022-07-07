@@ -34,7 +34,7 @@ class NERExample:
             return labels
         elif 'label' in self.raw:
             labels = defaultdict(list)
-            for label in self.raw['labels']:
+            for label in self.raw['label']:
                 # TODO: This format doesn't have a user field currently.
                 # So this method uses the user 0 for all label.
                 labels[0].append(label)
