@@ -102,7 +102,7 @@ def create_bio_tags(
     
     #print(i, n)
     if i < n:
-        #print("ERROR NOT ALL TAGS WERE SAVED TO CONLL03")
+        print("ERROR NOT ALL TAGS WERE SAVED TO CONLL03")
     #print([(i, j) for i, j in zip(tokens, tags)])
     return tags
 
