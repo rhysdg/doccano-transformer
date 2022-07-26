@@ -71,39 +71,39 @@ def create_bio_tags(
     i = 0
     prefix = 'B-'
     tags = []
-    print("LENGTHS: ", len(offsets), len(offsets[1:] + [-1]))
+    #print("LENGTHS: ", len(offsets), len(offsets[1:] + [-1]))
     for token, token_start, next_token_start in zip(tokens, offsets, offsets[1:] + [-1]):
         token_end = token_start + len(token)
-        print("TOKEN_START: ", token_start, "\tTOKEN_END: ", token_end, "\tNEXT_TOKEN_START: ", next_token_start, "\tLABEL: ", labels[i] if i < n else None)
+        #print("TOKEN_START: ", token_start, "\tTOKEN_END: ", token_end, "\tNEXT_TOKEN_START: ", next_token_start, "\tLABEL: ", labels[i] if i < n else None)
 
         if i >= n or token_end < labels[i][0]:
-            print("TOKEN FINISHES BEFORE LABEL STARTS")
+            #print("TOKEN FINISHES BEFORE LABEL STARTS")
             tags.append('O')
         elif token_start > labels[i][1]:
-            print("TOKEN STARTS AFTER LABEL ENDS")
+            #print("TOKEN STARTS AFTER LABEL ENDS")
             tags.append('O')
         else:
             tags.append(prefix + str(labels[i][2]))
             # el final de la anotacion es mayor que el final del token
             if labels[i][1] > token_end:
                 if labels[i][1] < next_token_start:
-                    print("FINISHING TOKEN")
+                    #print("FINISHING TOKEN")
                     i += 1
                     prefix = 'B-'
                 else:
-                    print("CONTINUING TOKEN")
+                    #print("CONTINUING TOKEN")
                     prefix = 'I-'
             elif i < n:
-                print("FINISHING TOKEN")
+                #print("FINISHING TOKEN")
                 i += 1
                 prefix = 'B-'
 
     
     
-    print(i, n)
+    #print(i, n)
     if i < n:
-        print("ERROR NOT ALL TAGS WERE SAVED TO CONLL03")
-    print([(i, j) for i, j in zip(tokens, tags)])
+        #print("ERROR NOT ALL TAGS WERE SAVED TO CONLL03")
+    #print([(i, j) for i, j in zip(tokens, tags)])
     return tags
 
 
